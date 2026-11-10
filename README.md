@@ -1,6 +1,6 @@
 # Keyif Oyun Salonu
 
-İnternetsiz çalışan, 17 oyunluk kişisel oyun platformu. Hem bilgisayarda (tarayıcıda) hem de Android telefonda (APK) oynanır.
+İnternetsiz çalışan, 19 oyunluk kişisel oyun platformu. Hem bilgisayarda (tarayıcıda) hem de Android telefonda (APK) oynanır.
 
 ## Hızlı başlangıç
 
@@ -31,8 +31,10 @@ Hiçbir şey indirilmez, hesap veya internet gerekmez. Rekorlar ve ayarlar cihaz
 ### Yeni nesil (modern)
 | Oyun | Tür | Öne çıkanlar |
 |---|---|---|
+| Dron Pilotu | Simülasyon | 3B şehirde iki joystick ile dron uçuşu; serbest keşif (40 kristal), halka yarışı, kargo teslimatı; takip ve FPV kamera, mini harita, batarya ve şarj pistleri, engel algılama, yardımlı / manuel uçuş |
+| Sapan Uçuşu | Simülasyon | Sapanla fırlat, süzül, para kazan; 7 yükseltme, 4 uçak (kağıt uçak → jet), roket, 4 bölge (çayır, çöl, karlı dağlar, okyanus), suda sekme, rüzgar, 21 görev |
 | Birleştir | Bulmaca | Sayı birleştirme, 4×4 / 5×5 / 6×6, animasyonlar, 3 geri alma |
-| Blok Yerleştir | Bulmaca | 8×8 blok bulmacası, kombo sistemi |
+| Blok Yerleştir | Bulmaca | Klasik, Macera (mücevher toplama seviyeleri) ve Zamana Karşı modları; 8×8 / 10×10; jokerler (döndür, yenile, bomba, geri al, ipucu); mıknatıslı sürükle-bırak; seri ve "tahta temiz" bonusu; kaldığın yerden devam; 4 tema |
 | Vızz! | Refleks | Tek dokunuşla uçan arı, madalyalar |
 | Neon Koşucu | Refleks | Sonsuz koşu, çift zıplama, platformlar, altınlar |
 | Balon Patlat | Bulmaca | Duvardan sekme, nişan çizgisi, seviyeler |
@@ -47,6 +49,9 @@ Tüm oyunlar bu proje için sıfırdan yazıldı. Klasik oyun türlerini temel a
 - Duraklatma, nasıl oynanır ekranı, oyun ayarları
 - Ses ve titreşim açma/kapama, istatistikler, kayıtları sıfırlama
 - Dokunmatik + klavye desteği; Android geri tuşu oyunu duraklatır, sonra menüye döner
+
+## Güncellemeler
+Siteye yeni bir sürüm yüklendiğinde iPhone'daki uygulama bunu kendiliğinden fark eder. Ana menüdeysen hemen, oyundaysan menüye döndüğünde yenilenir. Kayıtların, rekorların ve Sapan Uçuşu'ndaki paran silinmez.
 
 ## Klasör yapısı
 ```

@@ -260,6 +260,7 @@
   }
 
   /* ---- oturum ---- */
+  let restartFlag = false;
   function createSession(game, opts) {
     const stage = $('#stage');
     stage.innerHTML = '';
@@ -286,6 +287,21 @@
       setTopScore(game.fmt === 'time' ? U.fmtTime(n) : n);
     };
     s.best = () => getBest(game, opts);
+    s.restart = !!restartFlag;
+    /* Oyun bitmeden rekor güncelle (sonsuz/ilerlemeli oyunlar için) */
+    s.record = v => {
+      if (game.bestMode !== 'high' || !(v > 0)) return false;
+      const b = getBest(game, opts);
+      if (b != null && v <= b) return false;
+      Store.set(bestKeyOf(game, opts), v);
+      setTopBest();
+      return true;
+    };
+    /* Sahne oranına göre yükseklik seçen tuval (tam ekran oyunlar için) */
+    s.canvasFill = (W, minH, maxH) => {
+      const r = (stage.clientHeight || 640) / Math.max(1, stage.clientWidth || 360);
+      return s.canvas(W, Math.round(U.clamp(W * r, minH, maxH)));
+    };
     s.loop = (update, render) => {
       let last = performance.now();
       const frame = t => {
@@ -429,7 +445,8 @@
     return s;
   }
 
-  function startGame() {
+  function startGame(restart) {
+    restartFlag = restart === true;
     if (session) session.destroy();
     hideOverlay();
     const game = curGame;
@@ -510,7 +527,7 @@
       buildOptions(pn, game);
       const help = el('div', 'help hidden', game.help);
       const bs = el('div', 'btns');
-      bs.appendChild(btn('▶&nbsp; BAŞLA', 'primary', startGame));
+      bs.appendChild(btn('▶&nbsp; BAŞLA', 'primary', () => startGame(false)));
       const hb = btn('Nasıl Oynanır?', 'ghost', () => {
         help.classList.toggle('hidden');
         hb.innerHTML = help.classList.contains('hidden') ? 'Nasıl Oynanır?' : 'Kuralları Gizle';
@@ -530,7 +547,7 @@
       pn.appendChild(el('p', '', curGame.name));
       const bs = el('div', 'btns');
       bs.appendChild(btn('▶&nbsp; Devam Et', 'primary', resumeGame));
-      bs.appendChild(btn('↻&nbsp; Yeniden Başlat', '', startGame));
+      bs.appendChild(btn('↻&nbsp; Yeniden Başlat', '', () => startGame(true)));
       if (curGame.options.length) bs.appendChild(btn('⚙&nbsp; Ayarları Değiştir', '', showStart));
       bs.appendChild(btn('Ana Menü', 'ghost', goHome));
       pn.appendChild(bs);
@@ -575,7 +592,7 @@
         pn.appendChild(el('div', 'sub', 'Toplam galibiyet: ' + (best || 0)));
       }
       const bs = el('div', 'btns');
-      bs.appendChild(btn('↻&nbsp; Tekrar Oyna', 'primary', startGame));
+      bs.appendChild(btn('↻&nbsp; Tekrar Oyna', 'primary', () => startGame(true)));
       if (game.options.length) bs.appendChild(btn('⚙&nbsp; Ayarları Değiştir', '', showStart));
       bs.appendChild(btn('Ana Menü', 'ghost', goHome));
       pn.appendChild(bs);
@@ -598,6 +615,7 @@
     showStart();
   }
   function goHome() {
+    if (P._reloadOnHome) { location.reload(); return; }
     if (session) { session.destroy(); session = null; }
     hideOverlay();
     curGame = null;
@@ -619,6 +637,7 @@
     const fav = Stats.favs.indexOf(game.id) >= 0;
     c.innerHTML =
       '<span class="badge">' + (game.gen === 'retro' ? 'Eski Nesil' : 'Yeni Nesil') + '</span>' +
+      (game.isNew ? '<span class="badge new">' + (game.isNew === true ? 'Yeni' : game.isNew) + '</span>' : '') +
       '<svg class="ic" viewBox="0 0 64 64">' + game.icon + '</svg>' +
       '<h3>' + game.name + '</h3><div class="meta">' + meta + '</div>' +
       '<button class="fav' + (fav ? ' on' : '') + '" aria-label="Favori">' + (fav ? IC.star : IC.starO) + '</button>';
@@ -736,7 +755,7 @@
       });
       bs.appendChild(rb);
       pn.appendChild(bs);
-      pn.appendChild(el('p', '', '<small>Keyif Oyun Salonu · Sürüm 1.0<br>Tüm oyunlar cihazında, internetsiz çalışır.</small>'));
+      pn.appendChild(el('p', '', '<small>Keyif Oyun Salonu · Sürüm 1.1<br>Tüm oyunlar cihazında, internetsiz çalışır.</small>'));
     });
   }
   function favGameName() {
@@ -816,6 +835,13 @@
   // Web sürümünde (http/https) çevrimdışı önbelleği etkinleştir. APK ve file:// açılışta gerek yok.
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => { /* yoksay */ }); });
+    // Yeni sürüm yüklendiğinde: ana menüdeysek hemen, oyundaysak menüye dönünce yenile
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController) return;
+      if ($('#home').classList.contains('active')) location.reload();
+      else { P._reloadOnHome = true; toast('Yeni sürüm hazır. Ana menüye dönünce yüklenecek.', 2600); }
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
