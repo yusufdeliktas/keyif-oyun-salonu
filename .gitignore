@@ -1,0 +1,13 @@
+# İmza anahtarı ve şifreleri asla yükleme
+android/keystore/
+android/keystore.properties
+
+# Yerel / derleme dosyaları
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/
+android/icon-512.png
+node_modules/
+.vscode/
+*.log
