@@ -7,7 +7,8 @@
 | Nerede | Nasıl |
 |---|---|
 | **Android telefon** | `KeyifOyunSalonu.apk` dosyasını telefona at, aç ve kur ("Bilinmeyen kaynaklardan yükleme" iznini bir kez vermen gerekebilir). |
-| **Bilgisayar** | `web/index.html` dosyasına çift tıkla. Chrome, Edge veya Firefox'ta açılır. |
+| **iPhone / iPad** | Safari'de **https://yusufdeliktas.github.io/keyif-oyun-salonu/** adresini aç → Paylaş → **Ana Ekrana Ekle**. İlk açılıştan sonra internetsiz çalışır. |
+| **Bilgisayar** | `web/index.html` dosyasına çift tıkla ya da yukarıdaki adresi aç. |
 
 Hiçbir şey indirilmez, hesap veya internet gerekmez. Rekorlar ve ayarlar cihazda saklanır.
 
