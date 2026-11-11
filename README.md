@@ -1,6 +1,6 @@
 # Keyif Oyun Salonu
 
-İnternetsiz çalışan, 19 oyunluk kişisel oyun platformu. Hem bilgisayarda (tarayıcıda) hem de Android telefonda (APK) oynanır.
+İnternetsiz çalışan, 20 oyunluk kişisel oyun platformu. Hem bilgisayarda (tarayıcıda) hem de Android telefonda (APK) oynanır.
 
 ## Hızlı başlangıç
 
@@ -27,6 +27,7 @@ Hiçbir şey indirilmez, hesap veya internet gerekmez. Rekorlar ve ayarlar cihaz
 | Dama | Strateji | Türk daması kuralları (zorunlu ve en çok taşı alan hamle, uçan dama), yapay zeka veya 2 oyuncu |
 | Solitaire | Kart | Klondike, 1 veya 3 kart çekme, sürükle-bırak, dokununca otomatik yerleştirme, otomatik bitirme |
 | Dört Taş | Strateji | 3 seviye yapay zeka veya 2 oyuncu |
+| Zindan Kaşifi | RPG | Sıra tabanlı zindan macerası: her seferinde yeniden oluşan 15 kat, 5 bölge, 3 sınıf (Savaşçı, Okçu, Büyücü), 9 beceri, 25 canavar ve 3 boss, rastgele büyülü eşyalar, tüccar, tuzaklar, yetenek seçimi, kalıcı ölüm ve Ruh Taşı ile kalıcı bonuslar, otomatik kayıt |
 
 ### Yeni nesil (modern)
 | Oyun | Tür | Öne çıkanlar |
@@ -60,6 +61,7 @@ web/                  Oyun platformu (HTML5, bağımlılık yok)
   css/style.css
   js/core.js          Platform çekirdeği: menü, skorlar, ses, oturum yönetimi
   games/*.js          Her oyun ayrı bir dosya
+  games/dungeon/      Zindan Kaşifi'nin veri, harita üretimi ve piksel sanat modülleri
 android/              APK'yı üreten Android projesi (WebView sarmalayıcı)
 KeyifOyunSalonu.apk   Hazır, imzalı Android uygulaması
 ```

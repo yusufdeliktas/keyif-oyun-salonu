@@ -755,7 +755,7 @@
       });
       bs.appendChild(rb);
       pn.appendChild(bs);
-      pn.appendChild(el('p', '', '<small>Keyif Oyun Salonu · Sürüm 1.1<br>Tüm oyunlar cihazında, internetsiz çalışır.</small>'));
+      pn.appendChild(el('p', '', '<small>Keyif Oyun Salonu · Sürüm 1.2<br>Tüm oyunlar cihazında, internetsiz çalışır.</small>'));
     });
   }
   function favGameName() {

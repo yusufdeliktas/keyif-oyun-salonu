@@ -1,6 +1,6 @@
 /* Çevrimdışı önbellek: ilk açılışta tüm dosyaları kaydeder, sonra internetsiz çalışır.
    Dosyalarda değişiklik yaptığında VERSION değerini artır. */
-const VERSION = 'keyif-v2';
+const VERSION = 'keyif-v3';
 const FILES = [
   './', './index.html', './manifest.json', './css/style.css', './js/core.js',
   './icon-192.png', './icon-512.png', './apple-touch-icon.png',
@@ -8,7 +8,8 @@ const FILES = [
   './games/mines.js', './games/pong.js', './games/chess.js', './games/dama.js',
   './games/solitaire.js', './games/connect4.js', './games/merge.js', './games/blockpuzzle.js',
   './games/bee.js', './games/runner.js', './games/bubble.js', './games/sudoku.js', './games/memory.js',
-  './games/drone.js', './games/plane.js'
+  './games/drone.js', './games/plane.js',
+  './games/dungeon.js', './games/dungeon/data.js', './games/dungeon/gen.js', './games/dungeon/art.js'
 ];
 
 self.addEventListener('install', e => {
